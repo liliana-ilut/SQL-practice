@@ -249,3 +249,27 @@ FROM
  SELECT 
    CONCAT(ROUND(SUM(gender='M') / CAST(COUNT(*) AS float), 4) * 100, '%')
 FROM patients; 
+
+--Question 9
+-- For each day display the total amount of admissions on that day. Display the amount changed from the previous date.
+
+SELECT
+ admission_date,
+ count(admission_date) as admission_day,
+ count(admission_date) - LAG(count(admission_date)) OVER(ORDER BY admission_date) AS admission_count_change 
+FROM admissions
+ group by admission_date;
+
+ --alternate solution
+
+ WITH admission_counts_table AS (
+  SELECT admission_date, COUNT(patient_id) AS admission_count
+  FROM admissions
+  GROUP BY admission_date
+  ORDER BY admission_date DESC
+)
+select
+  admission_date, 
+  admission_count, 
+  admission_count - LAG(admission_count) OVER(ORDER BY admission_date) AS admission_count_change 
+from admission_counts_table
