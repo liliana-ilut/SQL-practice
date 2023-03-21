@@ -202,3 +202,50 @@ FROM patients AS pa
 GROUP BY pr.province_name
 HAVING
   COUNT( CASE WHEN gender = 'M' THEN 1 END) > COUNT(*) * 0.5; 
+
+
+--Question 7
+-- We are looking for a specific patient. Pull all columns for the patient who matches the following criteria:
+-- - First_name contains an 'r' after the first two letters.
+-- - Identifies their gender as 'F'
+-- - Born in February, May, or December
+-- - Their weight would be between 60kg and 80kg
+-- - Their patient_id is an odd number
+-- - They are from the city 'Kingston'
+
+SELECT *
+from patients
+where
+	first_name like '__r%'
+    and gender = 'F'
+    and month(birth_date) in (02, 05, 12)
+    and weight between 60 and 80
+    and patient_id % 2 != 0
+    and city = 'Kingston'
+;
+
+--Question 8
+--Show the percent of patients that have 'M' as their gender. Round the answer to the nearest hundreth number and in percent form.
+
+SELECT CONCAT(
+    ROUND(
+      (
+        SELECT COUNT(*)
+        FROM patients
+        WHERE gender = 'M'
+      ) / CAST(COUNT(*) as float),
+      4
+    ) * 100,
+    '%'
+  ) as percent_of_male_patients
+FROM patients;
+
+--alternate solutions
+SELECT
+  round(100 * avg(gender = 'M'), 2) || '%' AS percent_of_male_patients
+FROM
+  patients;
+
+ SELECT 
+   CONCAT(ROUND(SUM(gender='M') / CAST(COUNT(*) AS float), 4) * 100, '%')
+FROM patients; 
