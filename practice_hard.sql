@@ -273,3 +273,17 @@ select
   admission_count, 
   admission_count - LAG(admission_count) OVER(ORDER BY admission_date) AS admission_count_change 
 from admission_counts_table
+
+
+--Question 10
+-- Sort the province names in ascending order in such a way that the province 'Ontario' is always on top.
+
+SELECT 
+     province_name
+from province_names
+order by 
+	Case 
+    	when province_name = 'Ontario' then 1
+    else 2
+    end
+;
