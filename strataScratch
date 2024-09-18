@@ -198,3 +198,20 @@ where c.first_name='Jill'
         or c.first_name='Eva'
 order by o.cust_id asc
 ;
+
+
+Q12: Find the details of each customer regardless of whether the customer made an order. Output the customer's first name, last name, and the city along with the order details.
+Sort records based on the customer's first name and the order details in ascending order.
+
+Code:
+select 
+    c.first_name,
+    c.last_name,
+    c.city,
+    o.order_details
+from customers c
+full join orders o
+    on c.id=o.cust_id
+order by 
+    c.first_name, o.order_details asc
+;
