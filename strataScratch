@@ -93,3 +93,13 @@ Hotel Arena	9.6	2
 Hotel Arena	8.8	2
 Hotel Arena	8.3	2
 Hotel Arena	7.1	1
+
+Q5: ount the number of movies that Abigail Breslin was nominated for an oscar.
+Code:
+select count(*) from oscar_nominees
+where
+    nominee='Abigail Breslin'
+;
+Output:
+count
+1
