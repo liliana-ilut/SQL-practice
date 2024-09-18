@@ -27,7 +27,7 @@ salary_difference
 2400
 
 
-Q2"We have a table with employees and their salaries, however, some of the records are old and contain outdated salary information. Find the current salary of each employee assuming that salaries increase each year. Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order.
+Q2: We have a table with employees and their salaries, however, some of the records are old and contain outdated salary information. Find the current salary of each employee assuming that salaries increase each year. Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order.
 
 Table: ms_employee_salary
 
@@ -53,3 +53,21 @@ id	first_name	last_name	department_id	current_salary
 2	Justin	Simon	1005	130000
 3	Kelly	Rosario	1002	42689
 4	Patricia	Powell	1004	170000
+
+
+Q3: Find the last time each bike was in use. Output both the bike number and the date-timestamp of the bike's last use (i.e., the date-time the bike was returned). Order the results by bikes that were most recently used.
+Code
+select 
+    bike_number,
+    max(end_time) last_used
+from dc_bikeshare_q1_2012 bike
+group by 
+    bike_number
+order by
+    last_used DESC
+;
+
+Output:
+bike_number	last_used
+W01278	2012-03-31 19:28:00
+W01097	2012-03-31 15:37:00
