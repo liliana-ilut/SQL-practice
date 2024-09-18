@@ -1,0 +1,27 @@
+Questions and Answers from StrataScratch
+
+Q1. Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.
+Code:
+  select
+    (select max(salary)
+    from db_dept d
+    join db_employee e
+        on d.id=e.department_id
+    where
+        department='marketing')
+    -
+    (select max(salary)
+    from db_dept d
+    join db_employee e
+        on d.id=e.department_id
+    where
+        department='engineering')
+    AS
+    salary_difference
+;
+--48187 marketing
+--45787 engineering
+
+Output:
+salary_difference
+2400
