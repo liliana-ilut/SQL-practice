@@ -71,3 +71,25 @@ Output:
 bike_number	last_used
 W01278	2012-03-31 19:28:00
 W01097	2012-03-31 15:37:00
+
+
+Q4: Find the number of rows for each review score earned by 'Hotel Arena'. Output the hotel name (which should be 'Hotel Arena'), review score along with the corresponding number of rows with that score for the specified hotel
+Code:
+select 
+    hotel_name,
+    reviewer_score,
+    count(reviewer_score) no_of_reviews
+    from hotel_reviews
+where hotel_name='Hotel Arena'
+group by
+    hotel_name,
+    reviewer_score
+order by reviewer_score DESC
+;
+
+Output:
+hotel_name	reviewer_score	no_of_reviews
+Hotel Arena	9.6	2
+Hotel Arena	8.8	2
+Hotel Arena	8.3	2
+Hotel Arena	7.1	1
