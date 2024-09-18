@@ -103,3 +103,19 @@ where
 Output:
 count
 1
+
+Q6: Find all posts which were reacted to with a heart. For such posts output all columns from facebook_posts table.
+Code:
+select 
+    distinct
+    p.*
+from facebook_posts p
+join
+    facebook_reactions r
+    on p.post_id=r.post_id
+where r.reaction='heart'
+;
+
+Output:
+post_id	poster	post_text	post_keywords	post_date
+1	1	Lebron James is top class.	[basketball,lebron_james,nba]	2019-01-02
