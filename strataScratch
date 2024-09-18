@@ -1,3 +1,4 @@
+
 Questions and Answers from StrataScratch
 
 Q1. Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.
@@ -214,4 +215,22 @@ full join orders o
     on c.id=o.cust_id
 order by 
     c.first_name, o.order_details asc
+;
+
+
+Q13:Find the number of workers by department who joined in or after April.
+
+
+Output the department name along with the corresponding number of workers.
+
+
+Sort records based on the number of workers in descending order.
+Code:
+select
+    department,
+    count(*) n_workers
+from worker
+where extract(month from joining_date) >= 4
+group by department
+order by n_workers desc
 ;
