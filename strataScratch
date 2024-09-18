@@ -142,3 +142,28 @@ India	7.5
 USA	4.6
 UK	4.333
 Switzerland	1
+
+
+Q8: Find all Lyft drivers who earn either equal to or less than 30k USD or equal to or more than 70k USD.
+Output all details related to retrieved records.
+Code:
+select 
+    * 
+from lyft_drivers
+where
+    yearly_salary <= 30000
+    OR
+    yearly_salary >= 70000
+;
+
+Q9: Find libraries who haven't provided the email address in circulation year 2016 but their notice preference definition is set to email.
+Output the library code.
+Code:
+select 
+    home_library_code 
+from library_usage
+where
+    circulation_active_year= 2016 and
+    notice_preference_definition = 'email' and
+    provided_email_address is false
+;
